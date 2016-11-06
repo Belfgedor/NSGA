@@ -154,7 +154,7 @@ def t5_f1(population):
 
 def t5_g(population):
 	population_aux = population[:,1:]
-	return [v_function(x) for x in population_aux]
+	return np.array([v_function(x) for x in population_aux])
 
 def t5_h(f1,g):
 	return 1.0 / f1
