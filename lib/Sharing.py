@@ -16,18 +16,20 @@ def euclidean_distance(a,b):
     return np.sqrt(np.sum((np.asanyarray(a)-np.asanyarray(b))**2))
 
 
+def share(Individual, objective, share_value, alpha=2):
+    if euclidean_distance(Individual,objective) < share_value:
+        return 1-(euclidean_distance(Individual,objective)/share_value)**alpha  
+    else: 
+        return 0.0 
+
 #front_list, the list of individual selected in the front
 #sharing_value -> real value (maximum phenotypic distance allowed between any two individuals)
 #Output : List of floats (Niche count for each individual of the front)
-def niche_count(front_list, share_value):
+def niche_count(front_list, share_value, alpha=2):
     NICHE_LIST = []
-    for individual in front_list:
-        NICHE_LIST.append(sum([1-(euclidean_distance(individual,objective)/share_value)**2 
-                               if euclidean_distance(individual,objective) < share_value 
-                               else 0.0 
-                               for objective in front_list]))
+    for indi in xrange(len(front_list)):
+        NICHE_LIST.append(np.sum([share(front_list[indi], front_list[obj], share_value, alpha=2) if obj != indi else 0 for obj in xrange(len(front_list))]))
     return np.asanyarray(NICHE_LIST)
-        
     
 #front_list, the list of individual selected in the front
 #sharing_value -> real value (maximum phenotypic distance allowed between any two individuals)
