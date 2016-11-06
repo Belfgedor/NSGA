@@ -16,6 +16,7 @@ def CrossoverBinary(Population,probabilityOfCrossover):
     return CrossoveredPopulation
 
 def BLX(gen0,gen1,alpha):
+    if gen0 == gen1 : return gen0
     gens = sorted([gen0,gen1])
     rang = [gens[0] - alpha*(gens[1]-gens[0]),gens[1] + alpha*(gens[1]-gens[0])]
     return (np.random.rand() * (rang[1]-rang[0])) - rang[0]
