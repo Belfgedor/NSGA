@@ -20,6 +20,7 @@ def t1_f1(population):
 	return population[:,0] # return x1
 
 def t1_g(population):
+	n_design_var = len(population[0])
 	population_aux = population[:,1:]
 	sumatory = population_aux.sum(axis=1)
 	return 1 + 9.0 * sumatory / (n_design_var-1)
@@ -47,6 +48,7 @@ def t2_f1(population):
 	return population[:,0] # return x1
 
 def t2_g(population):
+	n_design_var = len(population[0])
 	population_aux = population[:,1:]
 	sumatory = population_aux.sum(axis=1)
 	return 1 + 9.0 * sumatory / (n_design_var-1)
@@ -76,6 +78,7 @@ def t3_f1(population):
 	return population[:,0] # return x1
 
 def t3_g(population):
+	n_design_var = len(population[0])
 	population_aux = population[:,1:]
 	sumatory = population_aux.sum(axis=1)
 	return 1 + 9.0 * sumatory / (n_design_var-1)
@@ -107,6 +110,7 @@ def t4_f1(population):
 	return population[:,0] # return x1
 
 def t4_g(population):
+	n_design_var = len(population[0])
 	population_aux = population[:,1:]
 	sumatory_inside = np.square(population_aux) - 10*np.cos(4*np.pi*population_aux)
 	sumatory = sumatory_inside.sum(axis=1)
@@ -150,7 +154,7 @@ def t5_f1(population):
 
 def t5_g(population):
 	population_aux = population[:,1:]
-	return np.apply_along_axis(v_function,axix=1, arr=population_aux)
+	return [v_function(x) for x in population_aux]
 
 def t5_h(f1,g):
 	return 1.0 / f1
@@ -181,6 +185,7 @@ def t6_f1(population):
 	return 1 - np.exp((-4.0) * population_aux) * sinus_power
 
 def t6_g(population):
+	n_design_var = len(population[0])
 	population_aux = population[:,1:]
 	sumatory = population_aux.sum(axis=1)
 	return 1 + 9 * np.power( sumatory / (n_design_var-1) , 0.25)
