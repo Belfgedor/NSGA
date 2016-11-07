@@ -8,9 +8,6 @@ from lib.Sharing import sharing
 from copy import deepcopy as dcp
 import matplotlib.cm as cm
 import itertools
-%matplotlib inline
-%load_ext autoreload
-%autoreload 2
 
 #import lib.tests_nsga as TESTS
 
