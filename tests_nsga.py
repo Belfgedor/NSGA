@@ -30,6 +30,12 @@ def t1_h(f1,g):
 def t1_f2(population):
 	return t1_g(population) * t1_h(t1_f1(population),t1_g(population))
 
+def pareto_optimal_t1():
+	x = np.linspace(0.0,1.0,10000)
+	y = t1_h(t1_f1(x),1)
+	plt.plot(x,y)
+	plt.show()
+
 ##################################################################
 
 ##########################  TEST 2 ################################

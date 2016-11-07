@@ -13,7 +13,11 @@ import numpy as np
 #a,b two realvectors 
 #Output : float value (euclidean distance between a and b)
 def euclidean_distance(a,b):
-    return np.sqrt(np.sum((np.asanyarray(a)-np.asanyarray(b))**2))
+    result = np.sqrt(np.sum((np.asanyarray(a)-np.asanyarray(b))**2))
+
+
+    print result
+    return result
 
 
 def share(Individual, objective, share_value, alpha=2):

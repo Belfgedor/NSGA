@@ -7,7 +7,7 @@ from lib.SRS import StochasticRemainderSelection
 from lib.Sharing import sharing
 from copy import deepcopy as dcp
 
-#import lib.tests_nsga as TESTS
+import lib.tests_nsga as TESTS
 
 def apply_limits(individual,parametrss_limits):
     correct_individual = dcp(individual)
@@ -23,10 +23,12 @@ def nsga(max_generations, poblation_size, parametrss_limits, signma_sharing, ini
     
     Population = [individual_creator_function() for i in xrange(poblation_size)]
     BestFronts = []
-    for generation in xrange(max_generations):
+    print Population
+    for generation in xrange(1):
         classified_population = 0
         Fronts = [] # List of fronts
         FitnesValues = np.asanyarray([fittness_function(individual) for individual in Population]) # [f0,f1,f2,..] for each individual
+      	print FitnesValues
         SharedFitnesValues = [] #Based on the front
         NonClassifiedPopulation = dcp(Population)
         front = 0
@@ -35,8 +37,9 @@ def nsga(max_generations, poblation_size, parametrss_limits, signma_sharing, ini
             #print FitnesValues,NonClassifiedPopulation
             IND_FRONT = FrontExtraction(FitnesValues)
             #print IND_FRONT, len(FitnesValues), len(NonClassifiedPopulation)
-            CURRENT_FRONT = np.take(NonClassifiedPopulation,IND_FRONT,0)
-            CURRENT_FRONT_VALUES = np.take(FitnesValues,IND_FRONT,0)
+            print IND_FRONT
+            CURRENT_FRONT = np.take(NonClassifiedPopulation,IND_FRONT,0) #Variable de decision
+            CURRENT_FRONT_VALUES = np.take(FitnesValues,IND_FRONT,0) #Valores de f1 y f2
             NonClassifiedPopulation = np.delete(NonClassifiedPopulation , IND_FRONT,0)
             FitnesValues = np.delete(FitnesValues , IND_FRONT, 0)
             if len(Fronts) == 0:
@@ -46,7 +49,8 @@ def nsga(max_generations, poblation_size, parametrss_limits, signma_sharing, ini
             #print DummyValue
             #print CURRENT_FRONT_VALUES
             SHARED_NICHE_FRONT = sharing(CURRENT_FRONT_VALUES , DummyValue , signma_sharing)
-            #print SHARED_NICHE_FRONT
+            print "niche"
+            print SHARED_NICHE_FRONT
             SharedFitnesValues.append(SHARED_NICHE_FRONT)
             
             DummyValue = min(SHARED_NICHE_FRONT) * (1.0-sharing_percentage_reduction)
@@ -96,7 +100,7 @@ def test0():
         ,poblation_size = 20
         ,parametrss_limits =[[0.0,1.0]]*30
         ,signma_sharing = 5.1
-        ,initial_dummy = 1.0
+        ,initial_dummy = 100.0
         ,cross_parameter = 0.000000001
         ,mutation_parameter = 0.00000001
         ,individual_creator_function = individual_creation_function
@@ -108,9 +112,10 @@ def test0():
     FIT_FRONT = []
     for F in BEST_FRONTS:
         FIT_FRONT.append(np.asanyarray([fitness_function(R) for R in F]))
-        print F
+        #print F
         print "---- FRENTE ---"
     FIT_FRONT = np.asanyarray(FIT_FRONT)
     for F in FIT_FRONT[-1:]:
         plt.scatter(F.T[0],F.T[1])
+        TESTS.pareto_optimal_t1()
     plt.show()
