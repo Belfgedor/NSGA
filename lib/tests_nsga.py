@@ -186,7 +186,7 @@ def t5_f2(population):
 	return t5_g(population) * t5_h(t5_f1(population),t5_g(population))
 
 def pareto_optimal_t5():
-	x = np.arrange(0,30,1)
+	x = np.arange(1,30,1)
 	y = 10 * t5_h(x,10)
 	plt.plot(x,y,'g')
 	y = 11 * t5_h(x,11)
