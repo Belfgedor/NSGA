@@ -32,7 +32,8 @@ def share(Individual, objective, share_value, alpha=2):
 def niche_count(front_list, share_value, alpha=2):
     NICHE_LIST = []
     for indi in xrange(len(front_list)):
-        NICHE_LI = [share(front_list[indi], front_list[obj], share_value, alpha=2) if obj != indi else 0 for obj in xrange(len(front_list))]
+        # if obj != indi else 0
+        NICHE_LI = [share(front_list[indi], front_list[obj], share_value, alpha=2) for obj in xrange(len(front_list))]
         #print "NICHE _ VAl ",NICHE_LI
         NICHE_LIST.append(np.sum(NICHE_LI))
     return np.asanyarray(NICHE_LIST)
@@ -45,4 +46,5 @@ def sharing( front_list, dummyfitness , share_value, alpha=2):
     nc =niche_count(front_list,share_value, alpha=2)
     #nc = np.delete(nc,np.where(nc == 0)[0])
     #np.where(nc == 0)[0]
-    return np.asanyarray( [(dummyfitness /  c) if c != 0 else 0.000000001  for c in nc]  )  #niche_count(front_list,share_value, alpha=2)
+    #if c != 0 else 0.000000001
+    return np.asanyarray( [(dummyfitness /  c)   for c in nc]  )  #niche_count(front_list,share_value, alpha=2)
