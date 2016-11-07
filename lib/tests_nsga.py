@@ -33,7 +33,7 @@ def t1_f2(population):
 def pareto_optimal_t1():
 	x = np.linspace(0.0,1.0,10000)
 	y = t1_h(x,1)
-	plt.plot(x,y)
+	plt.plot(x,y,'g')
 
 
 ##################################################################
@@ -64,6 +64,11 @@ def t2_h(f1,g):
 def t2_f2(population):
 	return t2_g(population) * t2_h(t2_f1(population),t2_g(population))
 
+def pareto_optimal_t2():
+	x = np.linspace(0.0,1.0,10000)
+	y = t2_h(x,1)
+	plt.plot(x,y,'g')
+
 ##################################################################
 
 ##########################  TEST 3 ################################
@@ -93,6 +98,11 @@ def t3_h(f1,g):
 
 def t3_f2(population):
 	return t3_g(population) * t3_h(t3_f1(population),t3_g(population))
+
+def pareto_optimal_t3():
+	x = np.linspace(0.0,1.0,10000)
+	y = t3_h(x,1)
+	plt.plot(x,y,'g')
 
 ##################################################################
 
@@ -126,6 +136,13 @@ def t4_h(f1,g):
 
 def t4_f2(population):
 	return t4_g(population) * t4_h(t4_f1(population),t4_g(population))
+
+def pareto_optimal_t4():
+	x = np.linspace(0.0,1.0,10000)
+	y = t4_h(x,1)
+	plt.plot(x,y,'g')
+	y = t4_h(x,1.25)
+	plt.plot(x,y,'r')
 
 ##################################################################
 
@@ -168,6 +185,13 @@ def t5_h(f1,g):
 def t5_f2(population):
 	return t5_g(population) * t5_h(t5_f1(population),t5_g(population))
 
+def pareto_optimal_t5():
+	x = np.arrange(0,30,1)
+	y = 10 * t5_h(x,10)
+	plt.plot(x,y,'g')
+	y = 11 * t5_h(x,11)
+	plt.plot(x,y,'r')
+
 ##################################################################
 
 ##########################  TEST 6 ################################
@@ -200,5 +224,10 @@ def t6_h(f1,g):
 
 def t6_f2(population):
 	return t6_g(population) * t6_h(t6_f1(population),t6_g(population))
+
+def pareto_optimal_t6():
+	x = np.linspace(0.0,1.0,10000)
+	y = t6_h(x,1)
+	plt.plot(x,y,'g')
 
 ##################################################################
