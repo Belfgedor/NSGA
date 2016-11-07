@@ -10,8 +10,12 @@ def CrossoverBinary(Population,probabilityOfCrossover):
         #print SelectedIndividual
         #objective_individual = Population[SelectedIndividual] if Population[SelectedIndividual] != individual else Population[(SelectedIndividual+1) % len(Population)]
         objective_individual = Population[SelectedIndividual]
-        individuals_son = [objective_individual[i] if (probabilityOfCrossover > np.random.rand()) else individual[i] for i in xrange(len(individual))]
-        print individual,objective_individual,individuals_son
+        individuals_son = []
+        for i in xrange(len(individual)):
+            individuals_son.append( 
+            [objective_individual[i][j] if (probabilityOfCrossover > np.random.rand()) else individual[i][j] for j in xrange(len(individual[i]))]
+                )
+        #print individual,objective_individual,individuals_son
         CrossoveredPopulation.append(individuals_son)
     return CrossoveredPopulation
 
@@ -31,6 +35,6 @@ def CrossoverBlender(Population, alpha=0.5):
         SelectedIndividual = np.random.choice(range(len(Population)))
         objective_individual = Population[SelectedIndividual] if SelectedIndividual != ind else Population[(SelectedIndividual+1) % len(Population)]
         individuals_son = [BLX(objective_individual[i],individual[i],alpha) for i in xrange(len(individual))]
-        print individual,objective_individual,individuals_son
+        #print individual,objective_individual,individuals_son
         CrossoveredPopulation.append(individuals_son)
     return CrossoveredPopulation

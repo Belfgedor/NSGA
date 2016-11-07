@@ -10,4 +10,7 @@ def MutationRealNormal(individual, variance):
 #variance -> 0.0 <= Float Number <= 1.0 (Varaince for normal function)
 #output -> List of 1/0 (mutated individual)
 def MutationBinary(Individual, probabilityOfMutation):
-    return [int((not i)) if (probabilityOfMutation > np.random.rand()) else i for i in Individual]
+    mutated_son = []
+    for ind in Individual:
+        mutated_son.append([int((not i)) if (probabilityOfMutation > np.random.rand()) else i for i in ind])
+    return mutated_son

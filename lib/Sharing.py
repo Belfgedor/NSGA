@@ -28,12 +28,17 @@ def share(Individual, objective, share_value, alpha=2):
 def niche_count(front_list, share_value, alpha=2):
     NICHE_LIST = []
     for indi in xrange(len(front_list)):
-        NICHE_LIST.append(np.sum([share(front_list[indi], front_list[obj], share_value, alpha=2) if obj != indi else 0 for obj in xrange(len(front_list))]))
+        NICHE_LI = [share(front_list[indi], front_list[obj], share_value, alpha=2) if obj != indi else 0 for obj in xrange(len(front_list))]
+        #print "NICHE _ VAl ",NICHE_LI
+        NICHE_LIST.append(np.sum(NICHE_LI))
     return np.asanyarray(NICHE_LIST)
     
 #front_list, the list of individual selected in the front
 #sharing_value -> real value (maximum phenotypic distance allowed between any two individuals)
 #dummyfitness -> float (a random value or the less shared value of the last front)
-def sharing( front_list, dummyfitness , share_value):
+def sharing( front_list, dummyfitness , share_value, alpha=2):
     #A Dummy Fittnes corresponds to all points in the front list
-    return dummyfitness / niche_count(front_list,share_value)
+    nc =niche_count(front_list,share_value, alpha=2)
+    #nc = np.delete(nc,np.where(nc == 0)[0])
+    #np.where(nc == 0)[0]
+    return np.asanyarray( [(dummyfitness /  c) if c != 0 else 0.000000001  for c in nc]  )  #niche_count(front_list,share_value, alpha=2)

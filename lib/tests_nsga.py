@@ -95,7 +95,7 @@ def t3_f2(population):
 Test Features
 -------------------
 
-Contains 21⁹ LOCAL pareto-optimal fronts - test how dealing with multimodality
+Contains 21^9 LOCAL pareto-optimal fronts - test how dealing with multimodality
 How its able to reach the global optimal front
 
 xi_type = real
@@ -133,8 +133,8 @@ All pareto fronts (local and global) are convex
 
 xi_type = binary
 number of decision variables: 11
-x1 = {0,1}³⁰ 
-x2...Xm = {0,1}⁵
+x1 = {0,1}^30
+x2...Xm = {0,1}^5
 Pareto optimal front = g(x) = 10
 deceptive pareto optimal = g(x) = 11
 Population is matrix which contains the numbers of ones in each xi

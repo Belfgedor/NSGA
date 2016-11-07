@@ -7,8 +7,8 @@ def StochasticRemainderSelection(IndividualsRanks, NumberOfSelectedIndividuals):
     # 1. ToPercentage + NumberOfSelectedIndividuals
     #We consider that situation when we can want obtain less indiduals tha in the input.
     NPi = NumberOfSelectedIndividuals * (np.asanyarray(IndividualsRanks)*1.0/np.sum(IndividualsRanks)) 
-    for i in xrange(len(IndividualsRanks)):
-        print  IndividualsRanks[i], NPi[i]
+    #for i in xrange(len(IndividualsRanks)):
+    #    print  IndividualsRanks[i], NPi[i]
     # 2. Select integer part
     IntegerParts = [int(npi) for npi in NPi]
     Output = []
@@ -34,7 +34,7 @@ def StochasticRemainderSelection(IndividualsRanks, NumberOfSelectedIndividuals):
     for i in xrange(len(RestParts) ):
         RestPartsRulete.append(RestParts[i] + RestPartsRulete[-1])
     RestPartsRulete = np.asanyarray(RestPartsRulete)
-    print RestPartsRulete
+    #print RestPartsRulete
     for j in xrange(NumberOfSelectedIndividuals - len(Output)):
         RandomSelection = np.random.rand()
         Selection = np.where(RestPartsRulete <= RandomSelection)[0][-1]

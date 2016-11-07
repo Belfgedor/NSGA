@@ -1,6 +1,7 @@
 import numpy as np
 
 #PopulationFitness -> List of Lists of Float (List of individuals where each of individuals is a list of fitness funtions for the individual)
+#SharingFitness -> A float value
 #output -> A list of integers (List of inxes of the front of the population)
 def FrontExtraction(PopulationFitness):
     Front = []
