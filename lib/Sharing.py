@@ -16,7 +16,7 @@ def euclidean_distance(a,b):
     result = np.sqrt(np.sum((np.asanyarray(a)-np.asanyarray(b))**2))
 
 
-    print result
+    #print result
     return result
 
 

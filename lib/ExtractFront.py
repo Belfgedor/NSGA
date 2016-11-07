@@ -8,12 +8,17 @@ def FrontExtraction(PopulationFitness):
     for ind in xrange(len(PopulationFitness)):
         WeAreOK = True
         for obj in xrange(len(PopulationFitness)):
+            #print "ES Frente?", ind,obj
             if obj==ind : continue
             if sum(PopulationFitness[ind] >= PopulationFitness[obj]) == len(PopulationFitness[obj]):
-                break
-            if sum(PopulationFitness[ind] > PopulationFitness[obj]) == 0:
-                WeAreOK = False
-                break
+                #print sum(PopulationFitness[ind] >= PopulationFitness[obj]),(PopulationFitness[ind] >= PopulationFitness[obj]),len(PopulationFitness[obj])
+                if not (sum(PopulationFitness[ind] == PopulationFitness[obj]) == len(PopulationFitness[obj])):
+                    WeAreOK = False
+                    break
+            #if sum(PopulationFitness[ind] > PopulationFitness[obj]) == 0:
+            #    print (PopulationFitness[ind] > PopulationFitness[obj])
+            #    WeAreOK = False
+            #    break
         if WeAreOK:
             Front.append(ind)
     return Front
